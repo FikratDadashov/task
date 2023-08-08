@@ -9,19 +9,22 @@
     <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 4 admin, bootstrap 4, css3 dashboard, bootstrap 4 dashboard, xtreme admin bootstrap 4 dashboard, frontend, responsive bootstrap 4 admin template, material design, material dashboard bootstrap 4 dashboard template">
     <meta name="description" content="Xtreme is powerful and clean admin dashboard template, inpired from Google's Material Design">
     <meta name="robots" content="noindex,nofollow">
-    <title>Xtreme Admin Template by WrapPixel</title>
+    <title>Users Modules</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/xtremeadmin/">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{url('assets\images\logo-icon.jpg')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url('assets\images\logo.png')}}">
     <!-- This page plugin CSS -->
     <link href="{{url('assets\extra-libs\datatables.net-bs4\css\dataTables.bootstrap4.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
 
     <link rel="stylesheet" type="text/css" href="{{url('assets\extra-libs\datatables.net-bs4\css\responsive.dataTables.min.css')}}">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Custom CSS -->
     <link href="{{url('dist\css\style.min.css')}}" rel="stylesheet">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{url('assets\libs\select2\dist\css\select2.min.css')}}">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,19 +58,17 @@
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
-                <a class="navbar-brand" href="{{url('/')}}">
+                <a class="navbar-brand" href="{{url('/user')}}">
                     <!-- Logo icon -->
                     <b class="logo-icon">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
-                        <img src="{{url('assets\images\logo-icon.jpg')}}" width="50px" alt="homepage" class="dark-logo">
-                        <!-- Light Logo icon -->
-                        <img src="assets\images\logo-light-icon.png" alt="homepage" class="light-logo">
+                        <img src="{{url('assets\images\logo.png')}}" width="50px" alt="homepage" class="dark-logo">
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text -->
                     <span class="logo-text">
-                        <h3 style="color: black; text-align: center; margin-top: 5px;">Address Book</h3>
+                        <h3 style="color: black; text-align: center; margin-top: 5px;">Users Functions</h3>
                     </span>
                 </a>
                 <!-- ============================================================== -->
@@ -100,10 +101,45 @@
             <!-- Sidebar navigation-->
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
-                    <li class="sidebar-item"><a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                                href="{{url('/')}}" aria-expanded="false"><i data-feather="home"
-                                                                                             class="feather-icon"></i><span
-                                class="hide-menu mt-1">Mainpage</span></a></li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="{{url('/user')}}" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            <span class="hide-menu mt-1">Users</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="{{url('/group')}}" aria-expanded="false">
+                            <i class="fas fa-object-group"></i>
+                            <span class="hide-menu mt-1">Groups</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="{{url('/module')}}" aria-expanded="false">
+                            <i class="fas fa-boxes"></i>
+                            <span class="hide-menu mt-1">Modules</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="{{url('/function')}}" aria-expanded="false">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <span class="hide-menu mt-1">Functions</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="{{url('/right')}}" aria-expanded="false">
+                            <i class="fas fa-road"></i>
+                            <span class="hide-menu mt-1">User Rights</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- End Sidebar navigation -->
@@ -138,61 +174,40 @@
 <!-- ============================================================== -->
 <!-- End Wrapper -->
 <!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- customizer Panel -->
-<!-- ============================================================== -->
 
-<!-- ============================================================== -->
-<!-- All Jquery -->
-<!-- ============================================================== -->
+<script>
 
-<script type="text/javascript">
-    // add row
-    $("#addPhone").click(function () {
-        var html = '';
-        html += '<div class="form-group row align-items-center mb-0" id="inputFormPhone">';
-            html += '<label class="col-2 control-label col-form-label">Phone</label>';
-                html += '<div class="col-6 border-left pb-2 pt-2 input-group">';
-                    html += '<input type="text" name="phones[]" class="form-control" placeholder="Additional phone" required>';
-                    html += '<div class="input-group-append">';
-                        html += '<button id="removePhone" type="button" class="btn btn-danger">Remove</button>';
-                    html += '</div>';
-            html += '</div>';
-        html += '</div>';
+    $(".delete_right").click(function () {
 
-        $('#newPhone').append(html);
-    });
-    // remove row
-    $(document).on('click', '#removePhone', function () {
-        $(this).closest('#inputFormPhone').remove();
+        var function_id = $(this).val();
+        var user_id = $(this).attr("data-value");
+
+        $.ajax({
+            type: "GET",
+            url: "{{url('/right/ajax/delete_right')}}",
+            data:{
+                user_id: user_id,
+                function_id: function_id
+            },
+            success: function()
+            {
+                location.reload();
+            },
+            // error: function(){
+            // }
+        });
     });
 
-
-
-    $("#addEmail").click(function () {
-        var html = '';
-        html += '<div class="form-group row align-items-center mb-0" id="inputFormEmail">';
-            html += '<label class="col-2 control-label col-form-label">Email</label>';
-            html += '<div class="col-6 border-left pb-2 pt-2 input-group">';
-            html += '<input type="email" name="emails[]" class="form-control" placeholder="Additional email" required>';
-                html += '<div class="input-group-append">';
-                    html += '<button id="removeEmail" type="button" class="btn btn-danger">Remove</button>';
-                html += '</div>';
-            html += '</div>';
-        html += '</div>';
-
-        $('#newEmail').append(html);
-    });
-    // remove row
-    $(document).on('click', '#removeEmail', function () {
-        $(this).closest('#inputFormEmail').remove();
-    });
 </script>
 
 <script src="{{url('assets\libs\jquery\dist\jquery.min.js')}}"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="{{url('assets\libs\popper.js\dist\umd\popper.min.js')}}"></script>
 <script src="{{url('assets\libs\bootstrap\dist\js\bootstrap.min.js')}}"></script>
+<!-- This Page JS -->
+<script src="{{url('assets\libs\select2\dist\js\select2.full.min.js')}}"></script>
+<script src="{{url('assets\libs\select2\dist\js\select2.min.js')}}"></script>
+<script src="{{url('dist\js\pages\forms\select2\select2.init.js')}}"></script>
 <!-- apps -->
 <script src="{{url('dist\js\app.min.js')}}"></script>
 <script src="{{url('dist\js\app.init.js')}}"></script>
@@ -207,8 +222,6 @@
 <!--Custom JavaScript -->
 <script src="{{url('dist\js\feather.min.js')}}"></script>
 <script src="{{url('dist\js\custom.min.js')}}"></script>
-<!--This page plugins -->
-<script src="{{url('dist\js\pages\contact\contact.js')}}"></script>
 
 <!--This page JavaScript -->
 <script src="{{url('assets\libs\jquery.repeater\jquery.repeater.min.js')}}"></script>
@@ -218,7 +231,10 @@
 <script src="{{url('assets\extra-libs\datatables.net\js\jquery.dataTables.min.js')}}"></script>
 <script src="{{url('assets\extra-libs\datatables.net-bs4\js\dataTables.responsive.min.js')}}"></script>
 <script src="{{url('dist\js\pages\datatable\datatable-basic.init.js')}}"></script>
+<!-- This Page JS -->
 
+
+@yield('fetch')
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
