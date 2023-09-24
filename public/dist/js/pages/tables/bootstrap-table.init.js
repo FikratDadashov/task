@@ -21,7 +21,7 @@ var data = [
         "name": "blog",
         "stargazers_count": "13",
         "forks_count": "4",
-        "description": "my blog"
+        "description": "my news"
     },
     {
         "name": "scutech-redmine",

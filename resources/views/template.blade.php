@@ -9,10 +9,10 @@
     <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 4 admin, bootstrap 4, css3 dashboard, bootstrap 4 dashboard, xtreme admin bootstrap 4 dashboard, frontend, responsive bootstrap 4 admin template, material design, material dashboard bootstrap 4 dashboard template">
     <meta name="description" content="Xtreme is powerful and clean admin dashboard template, inpired from Google's Material Design">
     <meta name="robots" content="noindex,nofollow">
-    <title>Users Modules</title>
+    <title>News Management</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/xtremeadmin/">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{url('assets\images\logo.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url('assets\images\news.jpg')}}">
     <!-- This page plugin CSS -->
     <link href="{{url('assets\extra-libs\datatables.net-bs4\css\dataTables.bootstrap4.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -63,12 +63,12 @@
                     <b class="logo-icon">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
-                        <img src="{{url('assets\images\logo.png')}}" width="50px" alt="homepage" class="dark-logo">
+                        <img src="{{url('assets\images\news.jpg')}}" width="50px" alt="homepage" class="dark-logo">
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text -->
                     <span class="logo-text">
-                        <h3 style="color: black; text-align: center; margin-top: 5px;">Users Functions</h3>
+                        <h3 style="color: black; text-align: center; margin-top: 5px;">News </h3>
                     </span>
                 </a>
                 <!-- ============================================================== -->
@@ -102,42 +102,18 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="{{url('/user')}}" aria-expanded="false">
-                            <i class="fas fa-user"></i>
-                            <span class="hide-menu mt-1">Users</span>
+                        <a href="{{url('news')}}"
+                           class="sidebar-link waves-effect waves-dark sidebar-link @if(request()->is('news*')) active @endif">
+                            <i class="fas fa-newspaper"></i>
+                            <span class="hide-menu"><b> Xəbərlər</b></span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="{{url('/group')}}" aria-expanded="false">
-                            <i class="fas fa-object-group"></i>
-                            <span class="hide-menu mt-1">Groups</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="{{url('/module')}}" aria-expanded="false">
-                            <i class="fas fa-boxes"></i>
-                            <span class="hide-menu mt-1">Modules</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="{{url('/function')}}" aria-expanded="false">
-                            <i class="fas fa-puzzle-piece"></i>
-                            <span class="hide-menu mt-1">Functions</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="{{url('/right')}}" aria-expanded="false">
-                            <i class="fas fa-road"></i>
-                            <span class="hide-menu mt-1">User Rights</span>
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link @if(request()->is('language*')) active @endif"
+                           href="{{url('language')}}" aria-expanded="false">
+                            <i class="fas fa-language"></i>
+                            <span class="hide-menu"><b>Dil Məlumatları</b></span>
                         </a>
                     </li>
                 </ul>
