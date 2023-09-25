@@ -43,7 +43,8 @@ class NewsController extends Controller
                     'status' => $news->status->name,
                     'view_count' => $news->view_count,
                     'title' => ($news_text ? $news_text->title : ''),
-                    'description' => ($news_text ? $news_text->description : '')
+                    'description' => ($news_text ? $news_text->description : ''),
+                    'date' => date('d-m-Y h:i:s', strtotime($news->created_at)),
                 ]
             ];
         }
@@ -57,14 +58,24 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::find($id);
+        $news_text = $news->text->where('language_code', 'az')->first();
+
+        $selected_news = [];
         if ($news){
             $view_count = $news->view_count;
             $view_count++;
 
             $news->view_count = $view_count;
             $news->save();
+            $selected_news = [
+                'status' => $news->status->name,
+                'view_count' => $news->view_count,
+                'title' => ($news_text ? $news_text->title : ''),
+                'description' => ($news_text ? $news_text->description : ''),
+                'date' => date('d-m-Y h:i:s', strtotime($news->created_at)),
+            ];
 
-            return response()->json($news);
+            return response()->json($selected_news);
         }
         else
             return response()->json(['message' => "No data found"], 404);
